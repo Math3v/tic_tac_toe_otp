@@ -7,6 +7,10 @@ defmodule TicTacToeTest do
     %{game: game}
   end
 
+  test "get initial state", %{game: game} do
+    assert TicTacToe.state(game) == [[], [], []]
+  end
+
   test "cross move", %{game: game} do
     assert TicTacToe.move(game, {:cross, 1, 2}) == :ok
   end
