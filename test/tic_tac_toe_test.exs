@@ -19,6 +19,9 @@ defmodule TicTacToeTest do
   end
 
   test "cross move", %{game: game} do
-    assert TicTacToe.move(game, {:cross, 2, 5}) == :ok
+    assert TicTacToe.move(game, {:cross, 2, 2}) == :ok
+    state = TicTacToe.state(game)
+    row_2 = state |> Enum.at(2)
+    assert row_2 == [:empty, :empty, :cross]
   end
 end
