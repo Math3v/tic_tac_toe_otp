@@ -1,3 +1,5 @@
+require Board
+
 defmodule TicTacToe do
   use GenServer
 
