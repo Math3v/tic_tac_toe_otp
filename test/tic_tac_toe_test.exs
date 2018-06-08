@@ -8,7 +8,9 @@ defmodule TicTacToeTest do
   end
 
   test "get initial state", %{game: game} do
-    assert TicTacToe.state(game) == [[:empty, :empty, :empty], [:empty, :empty, :empty], [:empty, :empty, :empty]]
+    board = TicTacToe.state(game)
+    |> Map.get(:board)
+    assert board == [[:empty, :empty, :empty], [:empty, :empty, :empty], [:empty, :empty, :empty]]
   end
 
   test "circle move", %{game: game} do
