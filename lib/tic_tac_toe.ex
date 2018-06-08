@@ -1,6 +1,7 @@
+require Board
+
 defmodule TicTacToe do
   use GenServer
-  require Board
 
   def start_link(opts) do
     row = [:empty, :empty, :empty]
