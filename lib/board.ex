@@ -1,4 +1,11 @@
 defmodule Board do
+
+  def init() do
+    :empty
+    |> List.duplicate(3)
+    |> List.duplicate(3)
+  end
+
   def move(board, player, x, y) do
     new_row_x = board
     |> row(x)

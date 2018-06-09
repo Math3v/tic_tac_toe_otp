@@ -2,8 +2,9 @@ defmodule TicTacToe do
   use GenServer
 
   def start_link(opts) do
-    row = [:empty, :empty, :empty]
-    GenServer.start_link(__MODULE__, %{board: [row, row, row]}, opts)
+    GenServer.start_link(__MODULE__, %{
+      board: Board.init
+    }, opts)
   end
 
   def move(server, args) do
