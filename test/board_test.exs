@@ -67,4 +67,24 @@ defmodule BoardTest do
 
     assert winner == :circle
   end
+
+  test "identifies backward diagonal winner as cross" do
+    winner = Board.init()
+    |> List.replace_at(0, [:cross, :empty, :empty])
+    |> List.replace_at(1, [:empty, :cross, :empty])
+    |> List.replace_at(2, [:empty, :empty, :cross])
+    |> Board.winner()
+
+    assert winner == :cross
+  end
+
+  test "identifies forward diagonal winner as circle" do
+    winner = Board.init()
+    |> List.replace_at(0, [:empty, :empty, :circle])
+    |> List.replace_at(1, [:empty, :circle, :empty])
+    |> List.replace_at(2, [:circle, :empty, :empty])
+    |> Board.winner()
+
+    assert winner == :circle
+  end
 end
