@@ -16,6 +16,23 @@ defmodule Board do
   end
 
   def winner(board) do
+    rows_winner = board
+    |> rows_winner
+
+    cols_winner = board
+    |> cols_winner
+
+    if rows_winner != :no_winner, do: rows_winner, else: cols_winner
+  end
+
+  def cols_winner(board) do
+    board
+    |> List.zip
+    |> Enum.map(&Tuple.to_list/1)
+    |> rows_winner()
+  end
+
+  def rows_winner(board) do
     board
     |> Enum.map(&row_winner/1)
     |> Enum.drop_while(fn i -> i == :no_winner end)

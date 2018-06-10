@@ -47,4 +47,24 @@ defmodule BoardTest do
 
     assert winner == :circle
   end
+
+  test "identifies col_1 winner as cross" do
+    winner = Board.init()
+    |> List.replace_at(0, [:cross, :empty, :empty])
+    |> List.replace_at(1, [:cross, :empty, :empty])
+    |> List.replace_at(2, [:cross, :empty, :empty])
+    |> Board.winner()
+
+    assert winner == :cross
+  end
+
+  test "identifies col_3 winner as circle" do
+    winner = Board.init()
+    |> List.replace_at(0, [:empty, :empty, :circle])
+    |> List.replace_at(1, [:empty, :empty, :circle])
+    |> List.replace_at(2, [:empty, :empty, :circle])
+    |> Board.winner()
+
+    assert winner == :circle
+  end
 end
