@@ -8,9 +8,11 @@ defmodule TicTacToeTest do
   end
 
   test "get initial state", %{game: game} do
-    board = TicTacToe.state(game)
-    |> Map.get(:board)
+    %{board: board} = TicTacToe.state(game)
     assert board == [[:empty, :empty, :empty], [:empty, :empty, :empty], [:empty, :empty, :empty]]
+
+    %{state: state} = TicTacToe.state(game)
+    assert state == :waiting_for_player
   end
 
   test "circle move", %{game: game} do
@@ -25,5 +27,11 @@ defmodule TicTacToeTest do
     %{board: board} = TicTacToe.state(game)
     row_2 = board |> Enum.at(2)
     assert row_2 == [:empty, :empty, :cross]
+  end
+
+  test "join player", %{game: game} do
+    assert TicTacToe.join(game) == :ok
+    %{state: state} = TicTacToe.state(game)
+    assert state == :cross_move
   end
 end
