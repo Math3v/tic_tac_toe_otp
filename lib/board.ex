@@ -17,17 +17,17 @@ defmodule Board do
 
   def winner(board) do
     board
-    |> Enum.at(0)
-    |> row_winner()
+    |> Enum.map(&row_winner/1)
+    |> Enum.drop_while(fn i -> i == :no_winner end)
+    |> board_winner()
   end
 
-  defp row_winner(row) do
-    first = row |> List.first
-    Enum.reduce_while(row, first, &same_winner/2)
-  end
+  defp board_winner([]), do: :no_winner
+  defp board_winner(winners), do: List.first(winners)
 
-  defp same_winner(w, w), do: {:cont, w}
-  defp same_winner(_, _), do: {:halt, :no_winner}
+  defp row_winner([:cross, :cross, :cross]), do: :cross
+  defp row_winner([:circle, :circle, :circle]), do: :circle
+  defp row_winner(_), do: :no_winner
 
   defp row(board, x), do: Enum.at(board, x)
 end
