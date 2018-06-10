@@ -24,8 +24,12 @@ defmodule TicTacToe do
     {:ok, state}
   end
 
-  def handle_call({:join}, _from, state) do
+  def handle_call({:join}, _from, %{state: :waiting_for_player} = state) do
     {:reply, :ok, %{state | state: :cross_move}}
+  end
+
+  def handle_call({:join}, _from, state) do
+    {:reply, :error, state}
   end
 
   def handle_call({player, x, y}, _from, state) do

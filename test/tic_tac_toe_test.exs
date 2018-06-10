@@ -34,4 +34,9 @@ defmodule TicTacToeTest do
     %{state: state} = TicTacToe.state(game)
     assert state == :cross_move
   end
+
+  test "fails to join another player", %{game: game} do
+    assert TicTacToe.join(game) == :ok
+    assert TicTacToe.join(game) == :error
+  end
 end
