@@ -20,17 +20,17 @@ defmodule TicTacToe do
   end
 
   def handle_call({:cross, x, y}, _from, state) do
-    new_state = state
+    new_board = state
     |> get_board()
     |> Board.move(:cross, x, y)
-    {:reply, :ok, new_state}
+    {:reply, :ok, %{board: new_board}}
   end
 
   def handle_call({:circle, x, y}, _from, state) do
-    new_state = state
+    new_board = state
     |> get_board()
     |> Board.move(:circle, x, y)
-    {:reply, :ok, new_state}
+    {:reply, :ok, %{board: new_board}}
   end
 
   def handle_call({:state}, _from, state) do
