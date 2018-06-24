@@ -11,8 +11,8 @@ defmodule TicTacToeTest do
     %{board: board} = TicTacToe.state(game)
     assert board == [[:empty, :empty, :empty], [:empty, :empty, :empty], [:empty, :empty, :empty]]
 
-    %{state: state} = TicTacToe.state(game)
-    assert state == :waiting_for_player
+    %{status: status} = TicTacToe.state(game)
+    assert status == :waiting_for_player
   end
 
   test "circle move", %{game: game} do
@@ -31,8 +31,8 @@ defmodule TicTacToeTest do
 
   test "join player", %{game: game} do
     assert TicTacToe.join(game) == :ok
-    %{state: state} = TicTacToe.state(game)
-    assert state == :cross_move
+    %{status: status} = TicTacToe.state(game)
+    assert status == :cross_move
   end
 
   test "fails to join another player", %{game: game} do
