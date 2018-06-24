@@ -1,5 +1,4 @@
 defmodule Board do
-
   def init() do
     :empty
     |> List.duplicate(3)
@@ -7,27 +6,31 @@ defmodule Board do
   end
 
   def move(board, player, x, y) do
-    new_row_x = board
-    |> row(x)
-    |> List.replace_at(y, player)
+    new_row_x =
+      board
+      |> row(x)
+      |> List.replace_at(y, player)
 
     board
     |> List.replace_at(x, new_row_x)
   end
 
   def winner(board) do
-    rows_winner = board
-    |> rows_winner()
+    rows_winner =
+      board
+      |> rows_winner()
 
-    cols_winner = board
-    |> cols_winner()
+    cols_winner =
+      board
+      |> cols_winner()
 
-    diagonal_winner = board
-    |> diagonals_winner()
+    diagonal_winner =
+      board
+      |> diagonals_winner()
 
     [rows_winner, cols_winner, diagonal_winner]
-    |> Enum.sort
-    |> Enum.dedup
+    |> Enum.sort()
+    |> Enum.dedup()
     |> Enum.at(0)
   end
 
@@ -41,19 +44,21 @@ defmodule Board do
 
   defp forward_diagonal(board) do
     length = Enum.count(board)
-    0..length-1
+
+    0..(length - 1)
     |> Enum.map(fn i -> cell(board, i, length - 1 - i) end)
   end
 
   defp backward_diagonal(board) do
     length = Enum.count(board)
-    0..length-1
+
+    0..(length - 1)
     |> Enum.map(fn i -> cell(board, i, i) end)
   end
 
   defp cols_winner(board) do
     board
-    |> List.zip
+    |> List.zip()
     |> Enum.map(&Tuple.to_list/1)
     |> rows_winner()
   end

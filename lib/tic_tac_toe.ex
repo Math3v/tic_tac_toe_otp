@@ -2,10 +2,14 @@ defmodule TicTacToe do
   use GenServer
 
   def start_link(opts) do
-    GenServer.start_link(__MODULE__, %{
-      state: :waiting_for_player,
-      board: Board.init
-    }, opts)
+    GenServer.start_link(
+      __MODULE__,
+      %{
+        state: :waiting_for_player,
+        board: Board.init()
+      },
+      opts
+    )
   end
 
   def join(server) do
@@ -33,9 +37,11 @@ defmodule TicTacToe do
   end
 
   def handle_call({player, x, y}, _from, state) do
-    new_board = state
-    |> get_board()
-    |> Board.move(player, x, y)
+    new_board =
+      state
+      |> get_board()
+      |> Board.move(player, x, y)
+
     {:reply, :ok, %{board: new_board}}
   end
 
@@ -43,5 +49,5 @@ defmodule TicTacToe do
     {:reply, state, state}
   end
 
-  defp get_board(%{ board: board }), do: board
+  defp get_board(%{board: board}), do: board
 end
