@@ -41,16 +41,16 @@ defmodule TicTacToe do
   end
 
   def handle_call({player, x, y}, _from, %{status: status, board: board} = state) do
-    with true <- Board.empty?(board, x, y) do
-      new_board =
-        board
-        |> Board.move(player, x, y)
-
-      new_status = if status == :cross_move, do: :circle_move, else: :circle_move
-
+    with true <- Board.empty?(board, x, y),
+         new_board <- Board.move(board, player, x, y),
+         new_status <- next_status(status)
+    do
       {:reply, {:ok, new_status}, %{board: new_board, status: new_status}}
     else
       false -> {:reply, {:error, "Cannot move there"}, state}
     end
   end
+
+  defp next_status(:cross_move), do: :circle_move
+  defp next_status(:circle_move), do: :cross_move
 end
