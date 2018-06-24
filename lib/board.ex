@@ -34,7 +34,7 @@ defmodule Board do
     |> Enum.at(0)
   end
 
-  def empty?(board, x, y) do
+  def empty_at?(board, x, y) do
     cell =
       board
       |> Enum.at(x)
