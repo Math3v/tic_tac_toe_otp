@@ -1,6 +1,9 @@
 # TicTacToe
+[![CircleCI](https://circleci.com/gh/Math3v/tic_tac_toe_otp.svg?style=svg)](https://circleci.com/gh/Math3v/tic_tac_toe_otp)
+[![Ebert](https://ebertapp.io/github/Math3v/tic_tac_toe_otp.svg)](https://ebertapp.io/github/Math3v/tic_tac_toe_otp)
 
-**TODO: Add description**
+
+TicTacToe Application to learn OTP and Elixir
 
 ## Installation
 
