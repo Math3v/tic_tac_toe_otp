@@ -3,8 +3,8 @@ defmodule TicTacToe.MixProject do
 
   def project do
     [
-      app: :tic_tac_toe,
-      version: "0.1.0",
+      app: :tic_tac_toe_math3v,
+      version: "1.0.0",
       elixir: "~> 1.6",
       start_permanent: Mix.env() == :prod,
       deps: deps()

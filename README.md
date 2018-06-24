@@ -13,7 +13,7 @@ by adding `tic_tac_toe` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:tic_tac_toe, "~> 0.1.0"}
+    {:tic_tac_toe_math3v, "~> 1.0.0"}
   ]
 end
 ```
