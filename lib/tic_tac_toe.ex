@@ -20,20 +20,16 @@ defmodule TicTacToe do
     GenServer.call(server, args)
   end
 
-  def state(server) do
-    GenServer.call(server, {:state})
-  end
-
   def init(state) do
     {:ok, state}
   end
 
   def handle_call({:join}, _from, %{status: :waiting_for_player} = state) do
-    {:reply, :ok, %{state | status: :cross_move}}
+    {:reply, {:ok, :cross_move}, %{state | status: :cross_move}}
   end
 
   def handle_call({:join}, _from, state) do
-    {:reply, :error, state}
+    {:reply, {:error, "Cannot join more than 2 players"}, state}
   end
 
   def handle_call({:cross, _x, _y}, _from, %{status: :circle_move} = state) do
@@ -56,9 +52,5 @@ defmodule TicTacToe do
     else
       false -> {:reply, :error, "Cannot move there"}
     end
-  end
-
-  def handle_call({:state}, _from, state) do
-    {:reply, state, state}
   end
 end

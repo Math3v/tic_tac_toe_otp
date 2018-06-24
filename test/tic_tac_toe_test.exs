@@ -7,37 +7,13 @@ defmodule TicTacToeTest do
     %{game: game}
   end
 
-  test "get initial state", %{game: game} do
-    %{board: board} = TicTacToe.state(game)
-    assert board == [[:empty, :empty, :empty], [:empty, :empty, :empty], [:empty, :empty, :empty]]
-
-    %{status: status} = TicTacToe.state(game)
-    assert status == :waiting_for_player
-  end
-
-  test "circle move", %{game: game} do
-    assert TicTacToe.move(game, {:circle, 1, 2}) == :ok
-    %{board: board} = TicTacToe.state(game)
-    row_1 = board |> Enum.at(1)
-    assert row_1 == [:empty, :empty, :circle]
-  end
-
-  test "cross move", %{game: game} do
-    assert TicTacToe.move(game, {:cross, 2, 2}) == :ok
-    %{board: board} = TicTacToe.state(game)
-    row_2 = board |> Enum.at(2)
-    assert row_2 == [:empty, :empty, :cross]
-  end
-
   test "join player", %{game: game} do
-    assert TicTacToe.join(game) == :ok
-    %{status: status} = TicTacToe.state(game)
-    assert status == :cross_move
+    assert TicTacToe.join(game) == {:ok, :cross_move}
   end
 
   test "fails to join another player", %{game: game} do
-    assert TicTacToe.join(game) == :ok
-    assert TicTacToe.join(game) == :error
+    {:ok, :cross_move} = TicTacToe.join(game)
+    {:error, _reason} = TicTacToe.join(game)
   end
 
   test "fails to move the same player twice", %{game: game} do

@@ -114,4 +114,30 @@ defmodule BoardTest do
 
     assert empty == false
   end
+
+  test "get initial state" do
+    assert Board.init() == [
+             [:empty, :empty, :empty],
+             [:empty, :empty, :empty],
+             [:empty, :empty, :empty]
+           ]
+  end
+
+  test "circle move" do
+    row_1 =
+      Board.init()
+      |> Board.move(:circle, 1, 2)
+      |> Enum.at(1)
+
+    assert row_1 == [:empty, :empty, :circle]
+  end
+
+  test "cross move" do
+    row_2 =
+      Board.init()
+      |> Board.move(:cross, 2, 2)
+      |> Enum.at(2)
+
+    assert row_2 == [:empty, :empty, :cross]
+  end
 end
