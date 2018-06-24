@@ -97,4 +97,21 @@ defmodule BoardTest do
 
     assert winner == :circle
   end
+
+  test "identifies empty cell as empty" do
+    empty =
+      Board.init()
+      |> Board.empty?(1, 1)
+
+    assert empty == true
+  end
+
+  test "identifies circle cell as taken" do
+    empty =
+      Board.init()
+      |> List.replace_at(1, [:empty, :circle, :empty])
+      |> Board.empty?(1, 1)
+
+    assert empty == false
+  end
 end

@@ -34,6 +34,15 @@ defmodule Board do
     |> Enum.at(0)
   end
 
+  def empty?(board, x, y) do
+    cell =
+      board
+      |> Enum.at(x)
+      |> Enum.at(y)
+
+    cell == :empty
+  end
+
   defp diagonals_winner(board) do
     forward_diagonal = forward_diagonal(board)
     backward_diagonal = backward_diagonal(board)
