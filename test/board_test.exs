@@ -101,7 +101,7 @@ defmodule BoardTest do
   test "identifies empty cell as empty" do
     empty =
       Board.init()
-      |> Board.empty?(1, 1)
+      |> Board.empty_at?(1, 1)
 
     assert empty == true
   end
@@ -110,7 +110,7 @@ defmodule BoardTest do
     empty =
       Board.init()
       |> List.replace_at(1, [:empty, :circle, :empty])
-      |> Board.empty?(1, 1)
+      |> Board.empty_at?(1, 1)
 
     assert empty == false
   end
