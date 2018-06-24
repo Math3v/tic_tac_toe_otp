@@ -36,7 +36,7 @@ defmodule TicTacToe.MixProject do
     [
       maintainers: ["Matej Minarik"],
       licenses: ["MIT"],
-      files: ["lib", "priv", "mix.exs", "README*", "readme*", "LICENSE*", "license*"],
+      files: ["lib", "mix.exs", "README*"],
       links: %{"GitHub" => "https://github.com/Math3v/tic_tac_toe_otp"}
     ]
   end
