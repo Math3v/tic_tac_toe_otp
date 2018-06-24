@@ -8,7 +8,7 @@ defmodule TicTacToeTest do
   end
 
   test "joins a player", %{game: game} do
-    assert TicTacToe.join(game) == {:ok, :cross_move}
+    {:ok, :cross_move} = TicTacToe.join(game)
   end
 
   test "fails to join another player", %{game: game} do
