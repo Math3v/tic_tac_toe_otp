@@ -1,0 +1,14 @@
+{
+  "emeraldwalk.runonsave": {
+    "commands": [
+      {
+        "match": "\\.exs$",
+        "cmd": "cd ${workspaceRoot} && mix test"
+      },
+      {
+        "match": "\\.ex$",
+        "cmd": "cd ${workspaceRoot} && mix test"
+      }
+    ]
+  }
+}
