@@ -1,4 +1,6 @@
 defmodule Board do
+  @moduledoc false
+
   def init() do
     :empty
     |> List.duplicate(3)
