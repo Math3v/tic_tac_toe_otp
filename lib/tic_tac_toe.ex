@@ -3,7 +3,7 @@ defmodule TicTacToe do
 
   use GenServer
 
-  def start_link(opts) do
+  def start_link(opts \\ []) do
     GenServer.start_link(
       __MODULE__,
       %{
