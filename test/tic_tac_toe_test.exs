@@ -17,12 +17,12 @@ defmodule TicTacToeTest do
   end
 
   test "fails to move the same player twice", %{game: game} do
-    assert TicTacToe.move(game, {:cross, 2, 2}) == :ok
-    assert TicTacToe.move(game, {:cross, 1, 2}) == :error
+    {:ok, :circle_move} = TicTacToe.move(game, {:cross, 2, 2})
+    {:error, _reason} = TicTacToe.move(game, {:cross, 1, 2})
   end
 
   test "fails to move to a taken cell", %{game: game} do
-    assert TicTacToe.move(game, {:cross, 2, 2}) == :ok
-    assert TicTacToe.move(game, {:circle, 2, 2}) == :error
+    {:ok, :circle_move} = TicTacToe.move(game, {:cross, 2, 2})
+    {:error, _reason} = TicTacToe.move(game, {:circle, 2, 2})
   end
 end

@@ -33,14 +33,14 @@ defmodule TicTacToe do
   end
 
   def handle_call({:cross, _x, _y}, _from, %{status: :circle_move} = state) do
-    {:reply, :error, state}
+    {:reply, {:error, "Please, wait for your oponent to move."}, state}
   end
 
   def handle_call({:circle, _x, _y}, _from, %{status: :cross_move} = state) do
-    {:reply, :error, state}
+    {:reply, {:error, "Please, wait for your oponent to move."}, state}
   end
 
-  def handle_call({player, x, y}, _from, %{status: status, board: board}) do
+  def handle_call({player, x, y}, _from, %{status: status, board: board} = state) do
     with true <- Board.empty?(board, x, y) do
       new_board =
         board
@@ -48,9 +48,9 @@ defmodule TicTacToe do
 
       new_status = if status == :cross_move, do: :circle_move, else: :circle_move
 
-      {:reply, :ok, %{board: new_board, status: new_status}}
+      {:reply, {:ok, new_status}, %{board: new_board, status: new_status}}
     else
-      false -> {:reply, :error, "Cannot move there"}
+      false -> {:reply, {:error, "Cannot move there"}, state}
     end
   end
 end
