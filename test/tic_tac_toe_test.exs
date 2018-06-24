@@ -11,6 +11,15 @@ defmodule TicTacToeTest do
     {:ok, :cross_move} = TicTacToe.join(game)
   end
 
+  test "handles a game", %{game: game} do
+    {:ok, :cross_move} = TicTacToe.join(game)
+    {:ok, :circle_move} = TicTacToe.move(game, {:cross, 0, 0})
+    {:ok, :cross_move} = TicTacToe.move(game, {:circle, 1, 2})
+    {:ok, :circle_move} = TicTacToe.move(game, {:cross, 1, 1})
+    {:ok, :cross_move} = TicTacToe.move(game, {:circle, 1, 0})
+    {:ok, :cross_won} = TicTacToe.move(game, {:cross, 2, 2})
+  end
+
   test "fails to join another player", %{game: game} do
     {:ok, :cross_move} = TicTacToe.join(game)
     {:error, _reason} = TicTacToe.join(game)
