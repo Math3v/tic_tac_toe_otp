@@ -11,22 +11,13 @@ defmodule Board do
       |> row(x)
       |> List.replace_at(y, player)
 
-    board
-    |> List.replace_at(x, new_row_x)
+    List.replace_at(board, x, new_row_x)
   end
 
   def winner(board) do
-    rows_winner =
-      board
-      |> rows_winner()
-
-    cols_winner =
-      board
-      |> cols_winner()
-
-    diagonal_winner =
-      board
-      |> diagonals_winner()
+    rows_winner = rows_winner(board)
+    cols_winner = cols_winner(board)
+    diagonal_winner = diagonals_winner(board)
 
     [rows_winner, cols_winner, diagonal_winner]
     |> Enum.sort()
@@ -47,22 +38,17 @@ defmodule Board do
     forward_diagonal = forward_diagonal(board)
     backward_diagonal = backward_diagonal(board)
 
-    [forward_diagonal, backward_diagonal]
-    |> rows_winner()
+    rows_winner([forward_diagonal, backward_diagonal])
   end
 
   defp forward_diagonal(board) do
     length = Enum.count(board)
-
-    0..(length - 1)
-    |> Enum.map(fn i -> cell(board, i, length - 1 - i) end)
+    Enum.map(0..(length - 1), fn i -> cell(board, i, length - 1 - i) end)
   end
 
   defp backward_diagonal(board) do
     length = Enum.count(board)
-
-    0..(length - 1)
-    |> Enum.map(fn i -> cell(board, i, i) end)
+    Enum.map(0..(length - 1), fn i -> cell(board, i, i) end)
   end
 
   defp cols_winner(board) do

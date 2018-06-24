@@ -29,10 +29,7 @@ defmodule BoardTest do
   end
 
   test "identifies empty row_1 as no_winner" do
-    winner =
-      Board.init()
-      |> Board.winner()
-
+    winner = Board.winner(Board.init())
     assert winner == :no_winner
   end
 
@@ -99,10 +96,7 @@ defmodule BoardTest do
   end
 
   test "identifies empty cell as empty" do
-    empty =
-      Board.init()
-      |> Board.empty_at?(1, 1)
-
+    empty = Board.empty_at?(Board.init(), 1, 1)
     assert empty == true
   end
 
