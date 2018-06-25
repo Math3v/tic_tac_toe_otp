@@ -4,7 +4,7 @@ defmodule TicTacToe.MixProject do
   def project do
     [
       app: :tic_tac_toe_math3v,
-      version: "1.0.1",
+      version: "1.0.2",
       elixir: "~> 1.6",
       start_permanent: Mix.env() == :prod,
       description: description(),
