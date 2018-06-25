@@ -13,11 +13,11 @@ defmodule TicTacToeTest do
 
   test "handles a game", %{game: game} do
     {:ok, :cross_move} = TicTacToe.join(game)
-    {:ok, :circle_move} = TicTacToe.move(game, {:cross, 0, 0})
-    {:ok, :cross_move} = TicTacToe.move(game, {:circle, 1, 2})
-    {:ok, :circle_move} = TicTacToe.move(game, {:cross, 1, 1})
-    {:ok, :cross_move} = TicTacToe.move(game, {:circle, 1, 0})
-    {:ok, :cross_won} = TicTacToe.move(game, {:cross, 2, 2})
+    {:ok, %{status: :circle_move}} = TicTacToe.move(game, {:cross, 0, 0})
+    {:ok, %{status: :cross_move}} = TicTacToe.move(game, {:circle, 1, 2})
+    {:ok, %{status: :circle_move}} = TicTacToe.move(game, {:cross, 1, 1})
+    {:ok, %{status: :cross_move}} = TicTacToe.move(game, {:circle, 1, 0})
+    {:ok, %{status: :cross_won}} = TicTacToe.move(game, {:cross, 2, 2})
   end
 
   test "fails to join another player", %{game: game} do
@@ -27,13 +27,13 @@ defmodule TicTacToeTest do
 
   test "fails to move the same player twice", %{game: game} do
     {:ok, :cross_move} = TicTacToe.join(game)
-    {:ok, :circle_move} = TicTacToe.move(game, {:cross, 2, 2})
+    {:ok, %{status: :circle_move}} = TicTacToe.move(game, {:cross, 2, 2})
     {:error, _reason} = TicTacToe.move(game, {:cross, 1, 2})
   end
 
   test "fails to move to a taken cell", %{game: game} do
     {:ok, :cross_move} = TicTacToe.join(game)
-    {:ok, :circle_move} = TicTacToe.move(game, {:cross, 2, 2})
+    {:ok, %{status: :circle_move}} = TicTacToe.move(game, {:cross, 2, 2})
     {:error, _reason} = TicTacToe.move(game, {:circle, 2, 2})
   end
 end

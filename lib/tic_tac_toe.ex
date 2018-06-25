@@ -46,8 +46,9 @@ defmodule TicTacToe do
     with true <- Board.empty_at?(board, x, y),
          new_board <- Board.move(board, player, x, y),
          winner <- Board.winner(new_board),
-         new_status <- next_status(status, winner) do
-      {:reply, {:ok, new_status}, %{board: new_board, status: new_status}}
+         new_status <- next_status(status, winner),
+         new_state <- %{board: new_board, status: new_status} do
+      {:reply, {:ok, new_state}, new_state}
     else
       false -> {:reply, {:error, "Cannot move there"}, state}
     end
